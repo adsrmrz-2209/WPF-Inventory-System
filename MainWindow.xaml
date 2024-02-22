@@ -1,0 +1,163 @@
+﻿<Window x:Class="WpfApp1_MVVM_YT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1_MVVM_YT"
+        mc:Ignorable="d"
+        Title="Inventory System" Height="550" Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            
+            <Button x:Name="addBtn"
+                Grid.Row="0"
+                Width="100"
+                Height="30"
+                Margin="10, 10, 10, 10"
+                Content="Add"
+                Command="{Binding NewItemCommand}"/>
+
+            <Button x:Name="deleteBtn"
+                Grid.Row="0"
+                Width="100"
+                Height="30"
+                Margin="10, 10, 10, 10"
+                Content="Delete"
+                Command="{Binding DeleteCommand}"/>
+
+            <Button x:Name="saveBtn"
+                Grid.Row="0"
+                Width="100"
+                Height="30"
+                Margin="10, 10, 10, 10"
+                Content="Clear"
+                Command="{Binding ClearCommand}"/>
+
+        </StackPanel>
+        
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" Grid.Row="0">
+
+                <TextBlock Text="EDIT"
+                           FontSize="15"
+                           FontWeight="Light"
+                           Margin="20, 10, 20, 5"
+                           TextAlignment="Center"/>
+
+                <TextBlock Text="Name:"
+                           FontSize="15"
+                           FontWeight="Light"
+                           Margin="20, 10, 20, 5"/>
+
+                <TextBox BorderThickness="0.5"
+                         Width="160"
+                         Height="20"
+                         FontSize="15"
+                         FontWeight="ExtraLight"
+                         Text="{Binding SelectedItem.Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Serial Number:"
+                           FontSize="15"
+                           FontWeight="Light"
+                           Margin="20, 10, 20, 5"/>
+
+                <TextBox BorderThickness="0.5"
+                         Width="160"
+                         Height="20"
+                         FontSize="15"
+                         FontWeight="ExtraLight"
+                         Text="{Binding SelectedItem.SerialNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Quantity:"
+                           FontSize="15"
+                           FontWeight="Light"
+                           Margin="20, 10, 20, 5"/>
+
+                <TextBox x:Name="editQuantity"
+                         BorderThickness="0.5"
+                         Width="160"
+                         Height="20"
+                         FontSize="15"
+                         FontWeight="ExtraLight"
+                         PreviewTextInput="editQuantity_PreviewTextInput"
+                         CommandManager.PreviewExecuted="editQuantity_PreviewExecuted"
+                         Text="{Binding SelectedItem.Quantity, UpdateSourceTrigger=PropertyChanged}"/>
+
+                
+            </StackPanel>
+
+            <!--<StackPanel Grid.Column="1" Margin="0,180,0,0">
+                <TextBlock Text="New Name:"
+                           FontSize="15"
+                           FontWeight="Light"
+                           Margin="20, 10, 20, 5"/>
+
+                <TextBox BorderThickness="0.5"
+                         Width="160"
+                         Height="20"
+                         FontSize="15"
+                         FontWeight="ExtraLight"
+                         Text="{Binding NewName}"/>
+
+                <TextBlock Text="New Serial Number:"
+                           FontSize="15"
+                           FontWeight="Light"
+                           Margin="20, 10, 20, 5"/>
+
+                <TextBox BorderThickness="0.5"
+                         Width="160"
+                         Height="20"
+                         FontSize="15"
+                         FontWeight="ExtraLight"
+                         Text="{Binding NewSerialNumber}"/>
+
+                <TextBlock Text="New Quantity:"
+                           FontSize="15"
+                           FontWeight="Light"
+                           Margin="20, 10, 20, 5"/>
+
+                <TextBox BorderThickness="0.5"
+                         Width="160"
+                         Height="20"
+                         FontSize="15"
+                         FontWeight="ExtraLight"
+                         Text="{Binding NewQuantity}"/>
+            </StackPanel>-->
+
+            <Rectangle Grid.Column="0" 
+                       Fill="#c4c4c4"/>
+
+
+            <DataGrid ItemsSource="{Binding Items}"
+                      SelectedItem="{Binding SelectedItem}"
+                      Grid.Column="0" 
+                      CanUserAddRows="False" 
+                      CanUserDeleteRows="False"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserSortColumns="False"
+                      >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
+                    <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}" Width="4*"/>
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="2*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Grid>
+        
+        
+    </Grid>
+</Window>

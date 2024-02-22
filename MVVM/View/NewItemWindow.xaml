@@ -1,0 +1,76 @@
+﻿<Window x:Class="WpfApp1_MVVM_YT.MVVM.View.NewItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1_MVVM_YT.MVVM.View"
+        mc:Ignorable="d" 
+        Title="Add New Item" Height="280" Width="350">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,20,10">
+                <TextBlock Text="Name:"
+                       Width="60"
+                       Height="30"
+                       FontSize="20"
+                       FontWeight="Light"
+                       />
+
+                <TextBox Width="150"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding NewName}"
+                     FontSize="15"
+                     FontWeight="Light"
+                     Margin="5,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,20,10">
+                <TextBlock Text="Serial Number:"
+                       Width="130"
+                       Height="30"
+                       FontSize="20"
+                       FontWeight="Light"
+                       />
+
+                <TextBox Width="160"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding NewSerialNumber}"
+                     FontSize="15"
+                     FontWeight="Light"
+                     Margin="5,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,20,10">
+                <TextBlock Text="Quantity:"
+                       Width="80"
+                       Height="30"
+                       FontSize="20"
+                       FontWeight="Light"
+                       />
+
+                <TextBox x:Name="quantityInput"
+                    Width="60"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding NewQuantity}"
+                     FontSize="15"
+                     FontWeight="Light"
+                     Margin="5,0,0,0"
+                     PreviewTextInput="quantityInput_PreviewTextInput"
+                     CommandManager.PreviewExecuted="quantityInput_PreviewExecuted"/>
+                
+            </StackPanel>
+
+            <Button Height="40"
+                    Width="80"
+                    Content="Add"
+                    Margin="0,20,0,0"
+                    Command="{Binding AddCommand}"/>
+        </StackPanel>
+        
+        
+        
+    </Grid>
+</Window>
